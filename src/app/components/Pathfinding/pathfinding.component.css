@@ -1,0 +1,39 @@
+#wrapper {
+    min-height: calc(100vh - 50px);
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
+#mapOptions {
+    padding: 10px;
+}
+
+#mapOptions div {
+    padding: 5px 0;
+}
+
+#preview {
+    display: grid;
+    transform: rotateX(180deg);
+    margin: 50px auto;
+    background: white;
+}
+
+button {
+    color: white;
+    margin-right: 10px;
+    margin-top: 5px;
+    width: 150px;
+}
+
+#getButton {
+    background-color: #61affe;
+}
+
+#deleteButton {
+    background-color: #f93e3e;
+}
+
+#updateButton {
+    background-color: #fca130;
+}

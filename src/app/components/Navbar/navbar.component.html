@@ -1,0 +1,21 @@
+<nav>
+    <ul>
+        <span id="toggleBtn" (click)="toggleMenu()"
+            [style.background-color]="menuOpen ? '#fff' : 'rgba(242, 247, 251, 1)'">
+            <fa-icon [icon]="faBars"></fa-icon>
+        </span>
+        <span id="services">
+            <span>
+                <span>
+                    <fa-icon [icon]="faInfoCircle"></fa-icon>
+                </span>
+                <span>
+                    <fa-icon [icon]="faUser"></fa-icon>
+                </span>
+                <span>
+                    <fa-icon [icon]="faSignOutAlt"></fa-icon>
+                </span>
+            </span>
+        </span>
+    </ul>
+</nav>

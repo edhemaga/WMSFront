@@ -1,0 +1,10 @@
+<div id="wrapper">
+    <app-sidebar *ngIf="sideBarToggle" [@fadeInOut]></app-sidebar>
+    <div>
+        <app-navbar (toggleMenuEmitter)="toggleSidebar($event)"></app-navbar>
+        <div id="routerWrapper">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</div>

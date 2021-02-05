@@ -1,0 +1,14 @@
+#wrapper {
+  background-color: #F2F7FB;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 10fr;
+}
+
+#routerWrapper {
+  padding: 20px;
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: calc(95vh - 50px);
+  max-width: 100%;
+}
