@@ -1,0 +1,25 @@
+<div id="wrapper">
+    <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+        <span>
+            <div id="logo">
+                Warehouse Management System
+            </div>
+            <hr>
+            <div>
+                <mat-form-field>
+                    <mat-label>Unesite e-mail</mat-label>
+                    <input matInput placeholder="Email" type="email" formControlName="email">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>Unesite šifru</mat-label>
+                    <input matInput placeholder="Šifra" type="password" formControlName="password">
+                </mat-form-field>
+            </div>
+            <div id="buttonWrapper">
+                <button mat-raised-button type="submit">Prijava</button>
+            </div>
+        </span>
+    </form>
+</div>

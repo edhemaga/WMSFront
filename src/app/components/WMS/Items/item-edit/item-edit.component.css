@@ -1,0 +1,20 @@
+mat-form-field {
+  display: block;
+  color: rgb(37, 53, 68);
+}
+
+form {
+  min-width: 30vw;
+}
+
+button {
+  background-color: rgb(37, 53, 68);
+  color: #e9e8e8;
+}
+
+
+@media screen and (max-width: 768px) {
+  body {
+    min-width: 80vw;
+  }
+}

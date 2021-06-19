@@ -1,0 +1,122 @@
+hr {
+  display: block;
+  width: 90%;
+  height: 1px;
+  background-color: rgb(182, 182, 182);
+  border: none;
+  margin: 5px auto;
+}
+
+p:hover {
+  cursor: pointer;
+}
+
+span:hover {
+  cursor: pointer;
+}
+
+.displayFlex {
+  display: flex;
+}
+
+.align {
+  margin: auto;
+  width: 95%;
+}
+
+mat-form-field {
+  margin-right: 15px;
+}
+
+mat-accordion {
+  margin-right: 20px;
+}
+
+.alignTextCenter {
+  text-align: center;
+}
+
+#searchWrapper {
+  color: rgba(37, 53, 68);
+}
+
+#searchWrapper input {
+  width: 15%;
+  outline: none;
+  background-color: #F2F7FB;
+  margin: 15px 0;
+  border: none;
+}
+
+#searchWrapper span {
+  border-bottom: 3px solid rgba(37, 53, 68);
+  padding-bottom: 5px;
+}
+
+#searchWrapper fa-icon {
+  padding: 0 5px;
+}
+
+#searchBar {
+  margin: auto;
+  width: 80%;
+}
+
+#addBtnWrapper {
+  margin: auto;
+  width: 10%;
+}
+
+#addBtn {
+  border-radius: 50px;
+  max-width: 100%;
+  text-align: right;
+}
+
+#addBtn:hover {
+  cursor: pointer;
+}
+
+#pageLimit {
+  outline: none;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #F2F7FB;
+  border-radius: 2px;
+  border: none;
+  padding: 1px;
+}
+
+option {
+  color: #F2F7FB;
+  background-color: rgb(79, 83, 95);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 2px 1px;
+}
+
+button {
+  background-color: #2ee276;
+}
+
+#exportDocumentsWrapper {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+}
+
+#exportDocuments {
+  width: 95%;
+  margin: auto;
+}
+
+#addItemQuantity {
+  color: #2ee276;
+}
+
+#removeItemQuantity {
+  color: rgb(242, 247, 251);
+}
+
+#replace {
+  color: #1fc0ec;
+}

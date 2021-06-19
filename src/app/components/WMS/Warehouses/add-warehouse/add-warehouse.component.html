@@ -1,0 +1,20 @@
+<div>
+    <form [formGroup]="addWarehouseForm" (ngSubmit)="addWarehouse()">
+        <mat-form-field>
+            <mat-label>Adresa</mat-label>
+            <input matInput placeholder="Unesite adresu skladišta" value="" formControlName="address">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Kontakt e-mail</mat-label>
+            <input matInput placeholder="Unesite kontakt email adresu" value="" formControlName="contactEmail">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Kontakt broj telefona</mat-label>
+            <input matInput placeholder="Unesite kontakt broj telefona" value="" formControlName="contactPhoneNumber">
+        </mat-form-field>
+        <div>
+            <button type="submit" mat-raised-button>Dodaj</button>
+        </div>
+
+    </form>
+</div>

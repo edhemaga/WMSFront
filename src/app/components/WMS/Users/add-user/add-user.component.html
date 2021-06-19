@@ -1,0 +1,66 @@
+<div id="wrapperInput">
+    <form class="align" [formGroup]="addUserForm" (ngSubmit)="addUser()">
+
+        <mat-form-field>
+            <mat-label>Ime korisnika</mat-label>
+            <input matInput placeholder="Unesite ime korisnika" value="" formControlName="firstname">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Prezime korisnika</mat-label>
+            <input matInput placeholder="Unesite prezime korisnika" value="" formControlName="lastname">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Izaberite poziciju korisnika</mat-label>
+            <mat-select formControlName="role">
+                <mat-option *ngFor="let role of roles" [value]="role">
+                    {{role}}
+                </mat-option> 
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Telefonski broj</mat-label>
+            <input matInput placeholder="Unesite telefonski broj korisnika" value="" formControlName="phoneNumber"
+                type="number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="Unesite email korisnika" value="" formControlName="email" type="email">
+        </mat-form-field>
+
+
+        <mat-form-field>
+            <mat-label>Šifra</mat-label>
+            <input matInput placeholder="Unesite šifru korisnika" value="" formControlName="password">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Potvrda šifre</mat-label>
+            <input matInput placeholder="Potvrdite šifru korisnika" value="" formControlName="passwordConfirmation">
+        </mat-form-field>
+
+        <!-- <div class="upload-btn-wrapper">
+            <button class="btn">Uvezi sliku</button>
+            <input #file formControlName="userPicture" type="file" id="file" (change)="uploadUserPicture(file.files)">
+            <div>
+                <span id="chips" *ngIf="selectedFile != null">
+                    <mat-chip-list id="chip" class="no-wrap">
+                        <mat-chip><span>{{ selectedFile.name }}</span>
+                            <span id="closeIcon" (click)="removeUserPicture(selectedFile)">
+                                <fa-icon [icon]="faWindowClose" class="fa-lg"></fa-icon>
+                            </span>
+                        </mat-chip>
+                    </mat-chip-list>
+                </span>
+            </div> 
+        </div> -->
+
+        <div>
+            <button type="submit" mat-raised-button>Dodaj</button>
+        </div>
+
+    </form>
+</div>

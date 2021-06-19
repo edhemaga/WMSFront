@@ -1,0 +1,121 @@
+#user {
+  margin: 10px 0;
+  box-shadow: 1px 1px 1px 1px #e9e8e8;
+  border: 1px solid #e9e8e8;
+}
+
+span img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border: 2px solid #e9e8e8;
+  margin: 10px auto;
+  position: relative;
+  top: -50px;
+}
+
+#addUserBtn {
+  margin: auto 25px;
+}
+
+#addUserBtn button {
+  background-color: rgb(37, 53, 68);
+  color: rgb(233, 232, 232);
+}
+
+#header {
+  height: 75px;
+  background-color: white;
+}
+
+#contentAdmin {
+  height: auto;
+  background-color: rgb(37, 53, 68);
+}
+
+#contentOperator {
+  height: auto;
+  background-color: #442535;
+}
+
+#contentModerator {
+  height: auto;
+  background-color: #354425;
+}
+
+#contentImg {
+  display: flex;
+}
+
+#contentInfo {
+  position: relative;
+  top: -25px;
+  color: #e9e8e8;
+  text-align: center;
+}
+
+#footer {
+  background-color: white;
+  min-height: 25%;
+}
+
+#wrapperUser {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.alignRight {
+  text-align: right;
+}
+
+#wrapper {
+  margin: 25px;
+}
+
+#iconsWrapper {
+  display: flex;
+}
+
+#icons {
+  margin: auto 15px auto auto;
+  padding: 20px 0;
+}
+
+#icons span {
+  padding: 0 10px;
+}
+
+#icons span:hover {
+  cursor: pointer;
+}
+
+
+h1 {
+  padding: 0px;
+  margin: 0px;
+  color: rgb(37, 53, 68);
+}
+
+.hrWidth {
+  width: 100%;
+  margin: 0px;
+  color: rgb(37, 53, 68);
+}
+
+@media screen and (max-width: 1366px) and (min-width: 950px) {
+  #wrapperUser {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 950px) and (min-width: 640px) {
+  #wrapperUser {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  #wrapperUser {
+    grid-template-columns: 1fr;
+  }
+}

@@ -9,6 +9,6 @@
   padding: 20px;
   overflow: scroll;
   overflow-x: hidden;
-  max-height: calc(95vh - 50px);
+  max-height: calc(95vh - 5vh);
   max-width: 100%;
 }

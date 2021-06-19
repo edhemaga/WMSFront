@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { faUsers, faWarehouse, faBox, faFileInvoice, faMapMarkedAlt, faCog, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { faUsers, faWarehouse, faBox, faFileInvoice, faMapMarkedAlt, faCog, faExclamationTriangle, faChartBar, faArchive } from '@fortawesome/free-solid-svg-icons';
+import { UserService } from 'src/app/services/user.service';
+import { UserDTO } from 'src/app/models/DTOs/userDTO.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -15,10 +18,21 @@ export class SidebarComponent implements OnInit {
   faMapMarkedAlt = faMapMarkedAlt;
   faCog = faCog;
   faExclamationTriangle = faExclamationTriangle;
+  faChartBar = faChartBar;
+  faArchive = faArchive;
 
-  constructor() { }
+  currentUser: UserDTO;
+
+  jwtHelper = new JwtHelperService();
+
+  constructor(public userService: UserService) { }
 
   ngOnInit(): void {
+    var token = localStorage.getItem("jwt");
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    this.userService.getUser(decodedToken.aud, token).subscribe(data => {
+      this.currentUser = data as UserDTO;
+    });
 
   }
 

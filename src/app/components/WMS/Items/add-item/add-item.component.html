@@ -1,0 +1,31 @@
+<div id="wrapperInput" >
+    <form class="align" [formGroup]="addItemForm" (ngSubmit)="addItem()">
+        <mat-form-field>
+            <mat-label>Barkod</mat-label>
+            <input matInput placeholder="Unesite barkod" value="" formControlName="barcode" type="number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Naziv artikla</mat-label>
+            <input matInput placeholder="Unesite naziv artikla" value="" formControlName="label">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Kategorija</mat-label>
+            <input matInput placeholder="Unesite kategoriju" value="" formControlName="category">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Minimalna količina</mat-label>
+            <input matInput placeholder="Unesite minimalnu količinu" value="" formControlName="minimalQuantity"
+                type="number">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Indeks lomljivosti</mat-label>
+            <input matInput placeholder="Unesite indeks lomljivosti" value="" formControlName="fragilityIndex"
+                type="number">
+        </mat-form-field>
+        <button type="submit" mat-raised-button>Dodaj</button>
+    </form>
+</div>

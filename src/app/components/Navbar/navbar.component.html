@@ -12,7 +12,7 @@
                 <span>
                     <fa-icon [icon]="faUser"></fa-icon>
                 </span>
-                <span>
+                <span (click)="logOut()" routerLink="/login">
                     <fa-icon [icon]="faSignOutAlt"></fa-icon>
                 </span>
             </span>

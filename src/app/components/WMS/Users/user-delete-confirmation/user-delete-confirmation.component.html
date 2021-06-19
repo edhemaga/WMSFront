@@ -1,0 +1,7 @@
+<div id="wrapper">
+    <p>Da li ste sigurni da želite da izbrišete sljedećeg korisnika?</p>
+    {{data.user.firstname}} {{data.user.lastname}}: <b>{{data.user.role}}</b>
+    <br>
+    <button id="deleteBtn" (click)="deleteRow(data.user.id)" mat-raised-button>Izbriši</button>
+    <button (click)="closeConfirmation()" mat-raised-button>Otkaži</button>
+</div>

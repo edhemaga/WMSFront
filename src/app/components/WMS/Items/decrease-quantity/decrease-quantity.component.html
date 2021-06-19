@@ -1,0 +1,10 @@
+<div id="wrapper">
+    <form class="align" [formGroup]="decreaseQuantityForm" (ngSubmit)="decreaseQuantity()">
+        <mat-form-field>
+            <mat-label>Unesite količinu artikala za koju želite smanjiti stanje</mat-label>
+            <input matInput placeholder="Unesite količinu" value="" formControlName="decreaseQuantityInput"
+                type="number">
+        </mat-form-field>
+        <button type="submit" mat-raised-button>Izmjeni</button>
+    </form>
+</div>

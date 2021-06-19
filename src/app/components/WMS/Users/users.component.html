@@ -1,19 +1,96 @@
-<mat-card class="example-card">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>Shiba Inu</mat-card-title>
-        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-    <mat-card-content>
-        <p>
-            The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
-            A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
-            bred for hunting.
-        </p>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
-    </mat-card-actions>
-</mat-card>
+<div id="addUserBtn">
+    <button mat-raised-button *ngIf="isAdmin" (click)="addNewUser()">Dodaj novog korisnika</button>
+</div>
+
+<div id="wrapper" *ngIf="userAdmin.length != 0">
+    <div>
+        <h1>Admin</h1>
+        <hr class="hrWidth">
+    </div>
+    <div id="wrapperUser">
+        <span id="user" *ngFor="let user of userAdmin; let i = index">
+            <div id="header"></div>
+            <div id="contentAdmin">
+                <div id="contentInfo" (click)="test(user.image.id)">
+                    <p style="color: 'black';">{{user.firstname}} {{user.lastname}}: <b>{{user.role}}</b> </p>
+                    <p>{{user.phoneNumber}}</p>
+                    <p>{{user.email}}</p>
+                </div>
+                <div id="iconsWrapper" class="alignRight">
+                    <span id="icons">
+                        <span id="edit" *ngIf="isAdmin" (click)="editUser(user)">
+                            <fa-icon [icon]="faEdit"></fa-icon>
+                        </span>
+                        <span id="delete" *ngIf="isAdmin" (click)="deleteUser(user)">
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+
+<div id="wrapper" *ngIf="userOperator.length != 0">
+    <div>
+        <h1>Operateri</h1>
+        <hr class="hrWidth">
+    </div>
+    <div id="wrapperUser">
+        <span id="user" *ngFor="let user of userOperator; let i = index">
+            <div id="header"></div>
+            <div id="contentOperator">
+                <div id="contentImg">
+                    <img alt="logo" [src]="getImg(user.image.id)">
+                </div>
+                <div id="contentInfo" (click)="test(user.image.id)">
+                    <p>{{user.firstname}} {{user.lastname}}: <b>{{user.role}}</b> </p>
+                    <p>{{user.phoneNumber}}</p>
+                    <p>{{user.email}}</p>
+                </div>
+                <div id="iconsWrapper" class="alignRight">
+                    <span id="icons">
+                        <span id="edit" *ngIf="isAdmin" (click)="editUser(user)">
+                            <fa-icon [icon]="faEdit"></fa-icon>
+                        </span>
+                        <span id="delete" *ngIf="isAdmin" (click)="deleteUser(user)">
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>
+
+<div id="wrapper" *ngIf="userModerator.length != 0">
+    <div>
+        <h1>Moderatori</h1>
+        <hr class="hrWidth">
+    </div>
+    <div id="wrapperUser">
+        <span id="user" *ngFor="let user of userModerator; let i = index">
+            <div id="header"></div>
+            <div id="contentModerator">
+                <div id="contentImg">
+                    <img alt="logo" [src]="getImg(user.image.id)">
+                </div>
+                <div id="contentInfo" (click)="test(user.image.id)">
+                    <p>{{user.firstname}} {{user.lastname}}: <b>{{user.role}}</b> </p>
+                    <p>{{user.phoneNumber}}</p>
+                    <p>{{user.email}}</p>
+                </div>
+                <div id="iconsWrapper" class="alignRight">
+                    <span id="icons">
+                        <span id="edit" *ngIf="isAdmin" (click)="editUser(user)">
+                            <fa-icon [icon]="faEdit"></fa-icon>
+                        </span>
+                        <span id="delete" *ngIf="isAdmin" (click)="deleteUser(user)">
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>

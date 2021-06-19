@@ -1,0 +1,24 @@
+<form [formGroup]="editItemForm" (ngSubmit)="editItem(data.item.id)">
+    <mat-form-field>
+        <mat-label>Barkod</mat-label>
+        <input matInput placeholder="{{data.item.barcode}}" value="{{data.item.barcode}}" formControlName="barcode"
+            type="number">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Naziv artikla</mat-label>
+        <input matInput placeholder="{{data.item.label}}" value="{{data.item.label}}" formControlName="label">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Kategorija</mat-label>
+        <input matInput placeholder="{{data.item.category}}" value="{{data.item.category}}" formControlName="category">
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Minimalna količina</mat-label>
+        <input matInput placeholder="{{data.item.minimalquantity}}" value="{{data.item.minimalQuantity}}"
+            formControlName="minimalQuantity" type="number">
+    </mat-form-field>
+    <button type="submit" mat-raised-button>Izmjeni</button>
+</form>

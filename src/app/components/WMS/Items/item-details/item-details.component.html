@@ -1,0 +1,99 @@
+<div id="itemDetailsWrapper">
+    <div id="itemDetails">
+        <div>
+            <h3>{{item.label}} - {{item.barcode}}</h3>
+        </div>
+        <div class="largerFont">
+            Kategorija: {{item.category}}
+        </div>
+        <div class="largerFont">
+            Trenutna ukupna količina artikla: {{item.currentQuantity}}
+        </div>
+        <div class="largerFont">
+            Minimalna dozvoljena količina artikla {{item.minimalQuantity}}
+        </div>
+        <div style="text-align: right;">
+            <span (click)="addNewSeries()">
+                <fa-icon [icon]="faPlusCircle"></fa-icon> Dodaj novu seriju artikla
+            </span>
+        </div>
+    </div>
+    <ngx-datatable *ngIf="addNewsSeriesToggle" class="material" [rows]="item.series" [headerHeight]="50"
+        [footerHeight]="50" rowHeight="auto">
+        <ngx-datatable-column prop="quantity" name="Količina">
+            <ng-template let-column="column" ngx-datatable-header-template> {{column.name}} </ng-template>
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <p>
+                    {{ value }}
+                </p>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column prop="dateOfProduction" name="Datum proizvodnje">
+            <ng-template let-column="column" ngx-datatable-header-template> {{column.name}}
+            </ng-template>
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <p>
+                    {{ value| date:'dd/mm/yyyy' }}
+                </p>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column prop="dateOfExpiration" name="Datum isteka">
+            <ng-template let-column="column" ngx-datatable-header-template> {{column.name}}
+            </ng-template>
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <p>
+                    {{ value | date:'dd/mm/yyyy'}}
+                </p>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column prop="storageBin" name="Skladišno mjesto">
+            <ng-template let-column="column" ngx-datatable-header-template> {{column.name}}
+            </ng-template>
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <p>
+                    {{value}}
+                </p>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" name="Izbriši seriju">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <span id="delete" class="alignTextCenter"
+                    (click)="deleteSeries(row.id)">
+                    <p>
+                        <fa-icon [icon]="faTrash"></fa-icon>
+                    </p>
+                </span>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column [sortable]="false" name="Dodijeli poziciju">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <span *ngIf="row.storageBin == 'ulaz'" class="alignTextCenter"
+                    (click)="assigntStorageBin(item.id, row.id)">
+                    <p>
+                        <fa-icon [icon]="faPallet"></fa-icon>
+                    </p>
+                </span>
+            </ng-template>
+        </ngx-datatable-column>
+    </ngx-datatable>
+    <div id="wrapperInput" *ngIf="!addNewsSeriesToggle">
+        <form class="align" [formGroup]="addSeriesFrom" (ngSubmit)="submitSeries()">
+            <mat-form-field>
+                <mat-label>Datum proizvodnje serije</mat-label>
+                <input matInput placeholder="Unesite datum proizvodnje serije" value=""
+                    formControlName="dateOfProduction" type="date">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Datum isteka serije</mat-label>
+                <input matInput placeholder="Unesite datum proizvodnje serije" value=""
+                    formControlName="dateOfExpiration" type="date">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Količina proizvoda u seriji</mat-label>
+                <input matInput placeholder="Unesite količinu serije" value="" formControlName="quantity" type="number">
+            </mat-form-field>
+            <button type="submit" mat-raised-button>Dodaj</button>
+        </form>
+    </div>
+
+</div>

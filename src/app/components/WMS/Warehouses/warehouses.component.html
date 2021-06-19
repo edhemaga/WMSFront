@@ -1,0 +1,26 @@
+<div id="wrapper">
+    <button id="addWarehouseBtn" mat-raised-button (click)="addNewWarehouse()">Dodaj novo skladište</button>
+    <div id="wrapperWarehouse" *ngIf="warehouses.length != 0">
+        <span id="warehouse" *ngFor="let warehouse of warehouses; let i = index">
+            <div id="header"></div>
+            <div id="content">
+                <div id="contentInfo">
+                    <p>{{warehouse.address}}</p>
+                    <p>Kontakt broj telefona: {{warehouse.contactPhoneNumber}}</p>
+                    <p>Kontakt email: {{warehouse.contactEmail}}</p>
+                    <p>Broj skladišnih mjesta {{warehouse.storageBins.length}}</p>
+                </div>
+                <div id="iconsWrapper" class="alignRight">
+                    <span id="icons">
+                        <span id="edit" (click)="editWarehouse(warehouse)">
+                            <fa-icon [icon]="faEdit"></fa-icon>
+                        </span>
+                        <span id="delete" (click)="deleteWarehouse(id)">
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </span>
+                    </span>
+                </div>
+            </div>
+        </span>
+    </div>
+</div>

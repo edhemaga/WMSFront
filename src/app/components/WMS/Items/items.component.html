@@ -1,0 +1,140 @@
+<div id="wrapper">
+    <div class="displayFlex" id="searchWrapper">
+        <div id="searchBar">
+            <span>
+                <span>
+                    <fa-icon [icon]="faSearch"></fa-icon>
+                </span>
+                <input type="text" #searchField (keyup)="search(searchField.value)" placeholder="Pretražite artikle">
+            </span>
+        </div>
+        <div id="addBtnWrapper">
+            <div *ngIf="isAdmin" id="addBtn" (click)="addItem()">
+                Dodaj novi artikal
+                <fa-icon [icon]="faPlus"></fa-icon>
+            </div>
+        </div>
+    </div>
+    <div class="displayFlex" id="tableWrapper">
+        <ngx-datatable id="itemTable" class="dark align" [rows]="items" [headerHeight]="50" columnMode="force"
+            [messages]="{emptyMessage: 'Nema podataka!'}" scrollbarH="true" virtualization="true" swapColumns="true"
+            footerHeight="auto" [limit]="pageSize" rowHeight="auto" [offset]="pageNumber" [externalPaging]="true"
+            [count]="pageCount">
+            <ngx-datatable-column prop="barcode" name="Barkod">
+                <ng-template let-column="column" ngx-datatable-header-template> {{column.name}} </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span (click)="openDialog(row)">
+                        <p>
+                            {{ value }}
+                        </p>
+                    </span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column prop="label" name="Naziv">
+                <ng-template let-column="column" ngx-datatable-header-template> {{column.name}} </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span (click)="openDialog(row)">
+                        <p>
+                            {{ value }}
+                        </p>
+                    </span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column prop="category" name="Kategorija">
+                <ng-template let-column="column" ngx-datatable-header-template> {{column.name}} </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span (click)="openDialog(row)">
+                        <p>
+                            {{ value }}
+                        </p>
+                    </span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column prop="currentQuantity" name="Količina">
+                <ng-template let-column="column" ngx-datatable-header-template> {{column.name}} </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span (click)="openDialog(row)">
+                        <p>
+                            {{ value }}
+                        </p>
+                    </span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column prop="minimalQuantity" name="Minimalna količina">
+                <ng-template let-column="column" ngx-datatable-header-template> {{column.name}} </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span (click)="openDialog(row)">
+                        <p>
+                            {{ value }}
+                        </p>
+                    </span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column prop="addedOn" name="Datum unosa">
+                <ng-template let-column="column" ngx-datatable-header-template> {{column.name}} </ng-template>
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span (click)="openDialog(row)">
+                        <p>
+                            {{ value | date:'medium' }}
+                        </p>
+                    </span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column *ngIf="isAdmin" [sortable]="false" [width]="20">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span id="delete" class="alignTextCenter" (click)="deleteRow(row)">
+                        <p>
+                            <fa-icon [icon]="faTrash"></fa-icon>
+                        </p>
+                    </span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-column *ngIf="isAdmin" [sortable]="false" [width]="20">
+                <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                    <span id="edit" class="alignTextCenter" (click)="editRow(row)">
+                        <p>
+                            <fa-icon [icon]="faEdit"></fa-icon>
+                        </p>
+                    </span>
+                </ng-template>
+            </ngx-datatable-column>
+            <ngx-datatable-footer>
+                <ng-template ngx-datatable-footer-template let-rowCount="rowCount" let-curPage="curPage">
+                    <div style="padding: 5px 10px">
+                        <span>
+                            Ukupno: {{rowCount}}
+                        </span>
+                        <hr style="width:100%" />
+                        <span>
+                            Trenutno na stranici: {{curPage}}
+                        </span>
+                        <div>
+                            <span>
+                                Prikaži artikala po stranici:
+                            </span>
+                            <select (change)="getPageSize(pageLimit.value)" #pageLimit name="pageLimit" id="pageLimit">
+                                <option value="5">5</option>
+                                <option selected value="10">10</option>
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <datatable-pager [pagerLeftArrowIcon]="'datatable-icon-left'"
+                        [pagerRightArrowIcon]="'datatable-icon-right'" [pagerPreviousIcon]="'datatable-icon-prev'"
+                        [pagerNextIcon]="'datatable-icon-skip'" [page]="pageNumber" [size]="pageSize"
+                        [count]="pageCount" [hidden]="!((pageCount / pageSize) > 1)" (change)="setPage($event)">
+                    </datatable-pager>
+                </ng-template>
+            </ngx-datatable-footer>
+        </ngx-datatable>
+    </div>
+    <div id="exportDocumentsWrapper">
+        <div id="exportDocuments">
+            <button mat-raised-button (click)="exportCSV()">
+                Skini CSV <fa-icon [icon]="faFileCsv"></fa-icon>
+            </button>
+        </div>
+    </div>
+</div>

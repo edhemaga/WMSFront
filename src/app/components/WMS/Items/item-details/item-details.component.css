@@ -1,0 +1,42 @@
+#itemDetails {
+  background-color: rgb(37, 53, 68);
+  border-bottom: 5px solid #f2f7fb;
+  color: white;
+  padding: 10px 20px 10px 20px;
+}
+
+h3,
+h4 {
+  padding-bottom: 0;
+  margin-bottom: 5px;
+}
+
+.largerFont {
+  font-size: 11px;
+}
+
+.alignTextCenter {
+  text-align: center;
+  color: #3cb7fa;
+}
+
+/* .align {
+  width: 100%;
+} */
+p:hover {
+  cursor: pointer;
+}
+
+span:hover {
+  cursor: pointer;
+}
+
+mat-form-field {
+  display: block;
+  color: rgb(37, 53, 68);
+}
+
+form {
+  margin: 24px;
+  min-width: 40vw;
+}

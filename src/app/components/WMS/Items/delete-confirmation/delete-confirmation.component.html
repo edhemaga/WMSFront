@@ -1,0 +1,9 @@
+<div id="wrapper">
+    <p>Da li ste sigurni da želite da izbrišete sljedeći artikal?</p>
+    {{data.item.label}}: <b>{{data.item.category}}</b>
+    <br>
+    Količina: {{data.item.currentQuantity}}
+    <br>
+    <button id="deleteConfirmation" (click)="deleteRow(data.item.id)" mat-raised-button>Izbriši</button>
+    <button (click)="closeConfirmation()" mat-raised-button>Otkaži</button>
+</div>
