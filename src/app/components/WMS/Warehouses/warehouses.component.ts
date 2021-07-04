@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { WarehouseService } from 'src/app/services/warehouse.service';
 import { AddWarehouseComponent } from './add-warehouse/add-warehouse.component';
 import { Warehouse } from '../../../models/Warehouse/Warehouse.model';
+import { Router } from '@angular/router';
 
-import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faPencilRuler } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-warehouses',
@@ -13,10 +14,11 @@ import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 })
 export class WarehousesComponent implements OnInit {
 
-  constructor(public warehouseService: WarehouseService, public dialog: MatDialog) { }
+  constructor(public warehouseService: WarehouseService, public dialog: MatDialog, private router: Router) { }
 
   faTrash = faTrash;
   faEdit = faEdit;
+  faPencilRuler = faPencilRuler;
   warehouses: Warehouse[];
 
   ngOnInit(): void {
@@ -30,6 +32,10 @@ export class WarehousesComponent implements OnInit {
     const dialogRef = this.dialog.open(AddWarehouseComponent);
     dialogRef.afterClosed().subscribe(event => {
     });
+  }
+
+  configureWarehouse(id) {
+    this.router.navigate(["home/config/", id]);
   }
 
   editWarehouse() {

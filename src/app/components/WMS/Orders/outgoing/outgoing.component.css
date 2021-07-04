@@ -1,0 +1,22 @@
+.alignTextCenter {
+  text-align: center;
+  color: #3cb7fa;
+}
+
+mat-form-field {
+  display: block;
+  color: rgb(37, 53, 68);
+}
+
+button {
+  background-color: rgb(37, 53, 68);
+  color: rgb(233, 232, 232);
+}
+
+#addBtn {
+  margin: 10px auto;
+}
+
+#backBtn:hover {
+  cursor: pointer;
+}

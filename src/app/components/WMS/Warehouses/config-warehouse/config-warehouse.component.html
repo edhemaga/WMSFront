@@ -1,0 +1,38 @@
+<div>
+    <form [formGroup]="configForm" (ngSubmit)="submitConfig()">
+        <div>
+            <mat-form-field>
+                <mat-label>Sprat</mat-label>
+                <input matInput placeholder="Sprat" formControlName="section">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Unesite širinu skladišta</mat-label>
+                <input matInput placeholder="Širina" formControlName="width" type="number">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field>
+                <mat-label>Unesite visinu skladišta</mat-label>
+                <input matInput placeholder="Visina" formControlName="height" type="number">
+            </mat-form-field>
+        </div>
+        <div id="btnWrapper">
+            <button id="button" mat-raised-button type="submit">Prikaži ilustraciju</button>
+            <button id="btnGetConf" mat-raised-button *ngIf="width && height && pixelSize" (click)="getConfig()">Učitaj
+                konfiguraciju</button>
+        </div>
+    </form>
+</div>
+<div id="gridWrapper">
+    <ng-container *ngIf="width && height && pixelSize">
+        <drawing-grid [width]="width" [height]="height" [pixelSize]="pixelSize" (mouseDown)="onMouseDown($event)"
+            (mouseMove)="onMouseMove($event)" (mouseUp)="onMouseUp($event)" (contextMenu)="onContextMenu($event)">
+        </drawing-grid>
+    </ng-container>
+</div>
+<div>
+    <button id="button" mat-raised-button *ngIf="width && height && pixelSize" (click)="saveConfig()">Spasi
+        konfiguraciju</button>
+</div>

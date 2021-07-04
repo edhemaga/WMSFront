@@ -34,7 +34,7 @@ export class AddItemComponent implements OnInit {
       minimalquantity: this.addItemForm.value.minimalQuantity,
       fragilityindex: this.addItemForm.value.fragilityIndex
     }
-    this.ItemService.addItem(newItem).subscribe(result => {
+    this.ItemService.addItem(newItem).subscribe(() => {
       this.dialogRef.close();
     },
       err => {

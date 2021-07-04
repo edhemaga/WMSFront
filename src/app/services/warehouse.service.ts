@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { AddWarehouseDTO } from '../models/Warehouse/AddWarehouseDTO.model';
+import { configDTO } from '../models/DTOs/warehouse/configDTO.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,14 @@ export class WarehouseService {
       headers: new HttpHeaders()
         .set('Authorization', 'Bearer ' + localStorage.getItem("jwt"))
     });
+  }
+
+  addStorageBins(config: configDTO) {
+
+    return this.http.post(this.rootURL + "addConfig/", config, {
+      headers: new HttpHeaders()
+        .set('Authorization', 'Bearer ' + localStorage.getItem("jwt"))
+    })
   }
 
   addWarehouse(newWarehouse: AddWarehouseDTO) {

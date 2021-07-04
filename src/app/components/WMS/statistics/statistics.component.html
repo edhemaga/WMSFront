@@ -1,0 +1,32 @@
+<div id="wrapper">
+    <h2 class="separator">Statistika naruždbi</h2>
+    <div id="orderStats">
+        <div>
+            <ngx-charts-pie-grid [results]="orderStatistics"></ngx-charts-pie-grid>
+        </div>
+        <div>
+            <ngx-charts-bar-vertical [results]="groupedOrderStatistics" [yAxis]="yAxis" [xAxis]="xAxis"
+                [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [yAxisLabel]="yAxisLabelOrder"
+                [xAxisLabel]="xAxisLabelOrder"></ngx-charts-bar-vertical>
+        </div>
+
+        <!-- <ngx-charts-line-chart [results]="groupedOrderStatistics"></ngx-charts-line-chart> -->
+    </div>
+    <div  id="auxillaryStatistics">
+        <h2 class="separator">Statistika artikala</h2>
+        <div>
+            <ngx-charts-bar-horizontal [results]="groupedItemStatistics" [yAxis]="yAxis" [xAxis]="xAxis"
+                [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [yAxisLabel]="yAxisLabelItem"
+                [xAxisLabel]="xAxisLabelItem"></ngx-charts-bar-horizontal>
+        </div>
+    </div>
+
+    <div id="auxillaryStatistics">
+        <h2 class="separator">Statistika zona</h2>
+
+        <div>
+            <ngx-charts-pie-grid [results]="groupedStBinTypeStatistics"></ngx-charts-pie-grid>
+        </div>
+    </div>
+
+</div>

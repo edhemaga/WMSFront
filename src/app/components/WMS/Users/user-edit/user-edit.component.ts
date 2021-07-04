@@ -25,7 +25,6 @@ export class UserEditComponent implements OnInit {
       phoneNumber: new FormControl(this.data.user.phoneNumber, Validators.required),
       email: new FormControl(this.data.user.email, Validators.required),
       password: new FormControl(null, Validators.required),
-      userPicture: new FormControl(null, Validators.required)
     });
   }
 
@@ -37,7 +36,6 @@ export class UserEditComponent implements OnInit {
       phoneNumber: this.editUserForm.value.phoneNumber,
       email: this.editUserForm.value.email,
       password: this.editUserForm.value.password,
-      image: this.selectedFile,
     }
     userToEdit.id = this.data.user.id;
     this.userService.editUser(userToEdit).subscribe();

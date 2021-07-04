@@ -1,0 +1,16 @@
+#gridWrapper {
+  margin: 15 auto;
+}
+#button {
+  background: #253544;
+  color: #e9e8e8;
+}
+
+#btnGetConf {
+  margin-left: 15px;
+  background: #253544;
+  color: #e9e8e8;
+}
+#btnWrapper {
+  margin-bottom: 15px;
+}

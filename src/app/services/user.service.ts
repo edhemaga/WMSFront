@@ -15,7 +15,7 @@ export class UserService {
     var token = localStorage.getItem("jwt");
     let headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);
-    return this.http.get(this.rootURL, { headers })
+    return this.http.get(this.rootURL, { headers });
   }
 
 
@@ -74,10 +74,6 @@ export class UserService {
 
     var userFormData: FormData = new FormData();
 
-    if (userToEdit.image.name != null) {
-      userFormData.append("Image", userToEdit.image, userToEdit.image.name);
-    }
-
     userFormData.append("Id", userToEdit.id);
     userFormData.append("Firstname", userToEdit.firstname);
     userFormData.append("Lastname", userToEdit.lastname);
@@ -88,7 +84,7 @@ export class UserService {
 
     return this.http.put(this.rootURL, userFormData, { headers });
   }
-  
+
   deleteUser(id: string, token: string) {
     let headers = new HttpHeaders()
       .set('Authorization', 'Bearer ' + token);

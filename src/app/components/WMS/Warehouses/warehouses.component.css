@@ -3,7 +3,7 @@
   height: 100%;
 }
 
-#addWarehouseBtn{
+#addWarehouseBtn {
   background-color: rgb(37, 53, 68);
   color: rgb(233, 232, 232);
 }
@@ -23,7 +23,13 @@
   position: relative;
   top: -25px;
   color: #e9e8e8;
+
   text-align: center;
+}
+
+#content {
+  height: auto;
+  background-color: rgb(37, 53, 68);
 }
 
 #footer {
@@ -60,7 +66,6 @@
 #icons span:hover {
   cursor: pointer;
 }
-
 
 h1 {
   padding: 0px;

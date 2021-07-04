@@ -18,9 +18,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-// import { AddMapComponent } from './components/Pathfinding/add-map/add-map.component';
 import { AuthGuard } from '../app/authGuard/authGuard';
 import { LoggedInAuthGuard } from '../app/authGuard/loggedInAuthGuard';
 
@@ -31,7 +31,6 @@ import { UsersComponent } from './components/WMS/Users/users.component';
 import { WarehousesComponent } from './components/WMS/Warehouses/warehouses.component';
 import { ItemsComponent } from './components/WMS/Items/items.component';
 import { OrdersComponent } from './components/WMS/Orders/orders.component';
-import { SettingsComponent } from './components/WMS/Settings/settings.component';
 import { ProblemReportsComponent } from './components/WMS/Problem-reports/problem-reports.component';
 import { LoginComponent } from './components/Login/login.component';
 import { DeleteConfirmationComponent } from './components/WMS/Items/delete-confirmation/delete-confirmation.component';
@@ -45,6 +44,12 @@ import { UserDeleteConfirmationComponent } from './components/WMS/Users/user-del
 import { UserEditComponent } from './components/WMS/Users/user-edit/user-edit.component';
 import { AddWarehouseComponent } from './components/WMS/Warehouses/add-warehouse/add-warehouse.component';
 import { ItemDetailsComponent } from './components/WMS/Items/item-details/item-details.component';
+import { ConfigWarehouseComponent } from './components/WMS/Warehouses/config-warehouse/config-warehouse.component';
+
+import { DrawingGridModule } from 'ngx-drawing-grid';
+import { IncomingComponent } from './components/WMS/Orders/incoming/incoming.component';
+import { OutgoingComponent } from './components/WMS/Orders/outgoing/outgoing.component';
+import { StatisticsComponent } from './components/WMS/statistics/statistics.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -57,8 +62,9 @@ const routes: Routes = [
       { path: 'users', component: UsersComponent },
       { path: 'warehouses', component: WarehousesComponent },
       { path: 'items', component: ItemsComponent },
+      { path: 'config/:id', component: ConfigWarehouseComponent },
       { path: 'orders', component: OrdersComponent },
-      { path: 'settings', component: SettingsComponent },
+      { path: 'statistics', component: StatisticsComponent },
       { path: 'problem', component: ProblemReportsComponent },
     ]
   },
@@ -77,7 +83,6 @@ const routes: Routes = [
     WarehousesComponent,
     ItemsComponent,
     OrdersComponent,
-    SettingsComponent,
     ProblemReportsComponent,
     LoginComponent,
     DeleteConfirmationComponent,
@@ -90,6 +95,10 @@ const routes: Routes = [
     UserEditComponent,
     AddWarehouseComponent,
     ItemDetailsComponent,
+    ConfigWarehouseComponent,
+    IncomingComponent,
+    OutgoingComponent,
+    StatisticsComponent
   ],
   imports: [
     BrowserModule,
@@ -106,6 +115,7 @@ const routes: Routes = [
     MatMenuModule,
     FontAwesomeModule,
     NgxDatatableModule,
+    NgxChartsModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
@@ -116,6 +126,7 @@ const routes: Routes = [
         // blacklistedRoutes: []
       }
     }),
+    DrawingGridModule
   ],
   exports: [RouterModule],
   providers: [SidebarComponent, DeleteConfirmationComponent, DatePipe, AuthGuard, LoggedInAuthGuard],

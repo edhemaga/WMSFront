@@ -63,12 +63,6 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  getImg(imgUrl: string) {
-    let imgPath = "https://localhost:44372/user/getImage/";
-    imgPath = imgPath + imgUrl;
-    return imgPath;
-  }
-
   addNewUser() {
     const dialogRef = this.dialog.open(AddUserComponent);
     dialogRef.afterClosed().subscribe(event => {

@@ -8,14 +8,17 @@
                     <p>{{warehouse.address}}</p>
                     <p>Kontakt broj telefona: {{warehouse.contactPhoneNumber}}</p>
                     <p>Kontakt email: {{warehouse.contactEmail}}</p>
-                    <p>Broj skladišnih mjesta {{warehouse.storageBins.length}}</p>
+                    <p>Broj skladišnih mjesta: {{warehouse.storageBins.length}}</p>
                 </div>
                 <div id="iconsWrapper" class="alignRight">
                     <span id="icons">
+                        <span id="edit" (click)="configureWarehouse(warehouse.id)">
+                            <fa-icon [icon]="faPencilRuler"></fa-icon>
+                        </span>
                         <span id="edit" (click)="editWarehouse(warehouse)">
                             <fa-icon [icon]="faEdit"></fa-icon>
                         </span>
-                        <span id="delete" (click)="deleteWarehouse(id)">
+                        <span id="delete">
                             <fa-icon [icon]="faTrash"></fa-icon>
                         </span>
                     </span>

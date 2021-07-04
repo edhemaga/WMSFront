@@ -1,0 +1,44 @@
+<div id="wrapperInput">
+    <div id="addBtn" (click)="toggleOrder()">
+        <div *ngIf="!isAddingSeries">
+            Dodaj novi artikal
+            <fa-icon [icon]="faPlus"></fa-icon>
+        </div>
+        <div id="backBtn" *ngIf="isAddingSeries">
+            <fa-icon [icon]="faArrowLeft"></fa-icon>
+        </div>
+    </div>
+    <div *ngIf="!isAddingSeries">
+        <form class="align" [formGroup]="addOrderFrom" (ngSubmit)="submitOrder()">
+            <mat-form-field>
+                <mat-label>Klijenta</mat-label>
+                <input matInput placeholder="Unesite klijenta" value="" formControlName="client">
+            </mat-form-field>
+            <button type="submit" mat-raised-button>Napravi narudžbu</button>
+        </form>
+        <div style="padding-top: 15px;" *ngIf="series.length != 0">
+            <b>List artikala:</b>
+            <div *ngFor="let series of series">
+                {{series.itemLabel}} - {{series.quantity}} kom. <fa-icon id="delete" (click)="removeFromOrder(series)"
+                    [icon]="faTrash"></fa-icon>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isAddingSeries">
+        <form class="align" [formGroup]="addSeriesFrom" (ngSubmit)="submitSeries()">
+            <mat-form-field appearance="fill">
+                <mat-label>Artikal</mat-label>
+                <mat-select formControlName="item">
+                    <mat-option *ngFor="let item of items" [value]="item">
+                        {{item.label}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Količina proizvoda u seriji</mat-label>
+                <input matInput placeholder="Unesite količinu serije" value="" formControlName="quantity" type="number">
+            </mat-form-field>
+            <button type="submit" mat-raised-button>Dodaj</button>
+        </form>
+    </div>
+</div>

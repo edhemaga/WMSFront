@@ -3,4 +3,5 @@ export interface addSeriesDTO {
     dateOfExpiration: Date;
     quantity: number;
     itemId: string;
+    // itemLabel: string;
 }

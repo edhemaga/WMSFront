@@ -6,5 +6,4 @@ export interface UserDTO {
     phoneNumber: string;
     email: string;
     password?: string;
-    image?: File
 }

@@ -6,6 +6,7 @@
 */
 {
   "files": [],
+  "angularCompilerOptions": { "enableIvy": true },
   "references": [
     {
       "path": "./tsconfig.app.json"

@@ -26,7 +26,6 @@ export class ItemEditComponent implements OnInit {
   }
 
   editItem(id: string) {
-    console.log(this.editItemForm.value)
 
     var item: ItemDTO = {
       id: id.trim(),
