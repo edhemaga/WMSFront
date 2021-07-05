@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { AddWarehouseDTO } from 'src/app/models/Warehouse/AddWarehouseDTO.model';
 import { WarehouseService } from 'src/app/services/warehouse.service';
 
@@ -13,7 +14,7 @@ export class AddWarehouseComponent implements OnInit {
 
   addWarehouseForm: FormGroup;
 
-  constructor(public warehouseService: WarehouseService, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<AddWarehouseComponent>) { }
+  constructor(public warehouseService: WarehouseService, @Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastrService, public dialogRef: MatDialogRef<AddWarehouseComponent>) { }
 
   ngOnInit(): void {
     this.addWarehouseForm = new FormGroup({
@@ -29,6 +30,10 @@ export class AddWarehouseComponent implements OnInit {
       contactEmail: this.addWarehouseForm.value.contactEmail,
       contactPhoneNumber: this.addWarehouseForm.value.contactPhoneNumber,
     }
-    this.warehouseService.addWarehouse(newWarehouse).subscribe();
+    this.warehouseService.addWarehouse(newWarehouse).subscribe(() => {
+      this.dialogRef.close(); this.toastr.success('Uspješno ste izvršili željenu radnju!');
+    }, () => {
+      this.toastr.error('Desio se problem. Pokušajte ponovo!');
+    });
   }
 }

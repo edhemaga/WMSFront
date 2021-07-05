@@ -23,3 +23,16 @@
         </span>
     </form>
 </div>
+<ng-template #customLoadingTemplate>
+    <div class="custom-class">
+        <h3>
+            Loading...
+        </h3>
+        <button>
+            Click me!
+        </button>
+    </div>
+</ng-template>
+
+<ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }" [template]="customLoadingTemplate">
+</ngx-loading>

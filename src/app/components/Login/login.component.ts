@@ -10,6 +10,7 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public loading = false;
 
   loginForm: FormGroup;
 
@@ -23,6 +24,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginSubmit() {
+    this.loading = true;
     let userCredentials: UserCredentials = {
       Email: this.loginForm.value.email,
       Password: this.loginForm.value.password
@@ -31,8 +33,9 @@ export class LoginComponent implements OnInit {
       let token = (<any>response).token;
       localStorage.setItem("jwt", token);
       this.router.navigate(["/home/items"]);
-    }, err => {
-      console.log(err);
+      this.loading = false;
+    }, () => {
+      this.loading = false;
     });
 
   }

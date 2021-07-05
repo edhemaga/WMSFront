@@ -1,8 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { addItemDTO } from 'src/app/models/DTOs/item/addItemDTO.model';
-import { ItemDTO } from 'src/app/models/DTOs/item/itemDTO.model';
 import { ItemService } from 'src/app/services/item.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { ItemService } from 'src/app/services/item.service';
 export class AddItemComponent implements OnInit {
 
   addItemForm: FormGroup;
-  constructor(public ItemService: ItemService, public dialogRef: MatDialogRef<AddItemComponent>) { }
+  constructor(public ItemService: ItemService, private toastr: ToastrService, public dialogRef: MatDialogRef<AddItemComponent>) { }
 
   ngOnInit(): void {
 
@@ -35,11 +35,10 @@ export class AddItemComponent implements OnInit {
       fragilityindex: this.addItemForm.value.fragilityIndex
     }
     this.ItemService.addItem(newItem).subscribe(() => {
-      this.dialogRef.close();
-    },
-      err => {
-        console.log(err);
-      });
+      this.toastr.success('Uspješno ste izvršili željenu radnju!');
+    }, () => {
+      this.toastr.error('Desio se problem. Pokušajte ponovo!');
+    });
   }
 
 }

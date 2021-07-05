@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserService } from 'src/app/services/user.service';
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons';
 import { UserDTO } from 'src/app/models/DTOs/userDTO.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-user',
@@ -17,7 +18,7 @@ export class AddUserComponent implements OnInit {
   selectedFile: File;
   roles: string[] = ["Admin", "Operater", "Moderator"];
 
-  constructor(public userService: UserService, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<AddUserComponent>) { }
+  constructor(public userService: UserService, @Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastrService, public dialogRef: MatDialogRef<AddUserComponent>) { }
 
   ngOnInit(): void {
     this.addUserForm = new FormGroup({
@@ -40,11 +41,12 @@ export class AddUserComponent implements OnInit {
       email: this.addUserForm.value.email,
       password: this.addUserForm.value.password,
     }
-    this.userService.addUser(newUser).subscribe(result => {
-      this.dialogRef.close();
-    }, err => {
-      console.log(err);
-    });
+    this.userService.addUser(newUser).subscribe(() => {
+      this.dialogRef.close(); this.dialogRef.close(); this.toastr.success('Uspješno ste izvršili željenu radnju!');
+    },
+      () => {
+        this.toastr.error('Desio se problem. Pokušajte ponovo!');
+      });
   }
 
   // uploadUserPicture(userPicture: File) {

@@ -9,6 +9,7 @@ import { SeriesService } from 'src/app/services/series.service';
 import { inflowDTO } from 'src/app/models/DTOs/order/inflowDTO.model';
 import { orderDTO } from 'src/app/models/DTOs/order/orderDTO.model';
 import { faPlus, faArrowLeft, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-incoming',
@@ -26,7 +27,7 @@ export class IncomingComponent implements OnInit {
   series: addSeriesDTO[] = [];
   orders: inflowDTO;
   isAddingSeries: boolean = false;
-  constructor(public ItemService: ItemService, public orderService: OrderService, public seriesService: SeriesService, public dialogRef: MatDialogRef<IncomingComponent>) { }
+  constructor(public ItemService: ItemService, private toastr: ToastrService, public orderService: OrderService, public seriesService: SeriesService, public dialogRef: MatDialogRef<IncomingComponent>) { }
 
   ngOnInit(): void {
     this.ItemService.getItems().subscribe(data => {
@@ -64,9 +65,9 @@ export class IncomingComponent implements OnInit {
       type: "ulaz",
       series: this.series
     }
-    this.orderService.inflowOrder(newOrder).subscribe(() => { this.dialogRef.close(); },
-      err => {
-        console.log(err);
+    this.orderService.inflowOrder(newOrder).subscribe(() => { this.dialogRef.close(); this.toastr.success('Uspješno ste napravili narudžbu!'); },
+      () => {
+        this.toastr.error('Desio se problem. Pokušajte ponovo!');
       });
   }
 

@@ -10,6 +10,7 @@ import { storageBinDTO } from 'src/app/models/DTOs/warehouse/storageBinDTO.model
 
 import { WarehouseService } from 'src/app/services/warehouse.service';
 import { StorageBinService } from 'src/app/services/storage-bin.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-config-warehouse',
@@ -35,6 +36,7 @@ export class ConfigWarehouseComponent implements OnInit {
     private route: ActivatedRoute,
     private host: ElementRef,
     private gridService: DrawingGridService,
+    private toastr: ToastrService,
   ) {
     this.warehouse_id = String(this.route.snapshot.paramMap.get('id'));
   }
@@ -123,6 +125,10 @@ export class ConfigWarehouseComponent implements OnInit {
       section: this.configForm.value.section,
       fields: fieldsTemp
     }
-    this.warehouseService.addStorageBins(config).subscribe();
+    this.warehouseService.addStorageBins(config).subscribe(() => {
+      this.toastr.success('Uspješno ste izvršili željenu radnju!');
+    }, () => {
+      this.toastr.error('Desio se problem. Pokušajte ponovo!');
+    });
   }
 }

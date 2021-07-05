@@ -3,5 +3,4 @@ export interface LogDTO {
     changedAttribute: string;
     previouseValue: string;
     newValue: string;
-    item: string;
 }

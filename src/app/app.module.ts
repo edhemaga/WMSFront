@@ -19,6 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatMenuModule } from '@angular/material/menu';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxLoadingModule } from 'ngx-loading';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { AuthGuard } from '../app/authGuard/authGuard';
@@ -113,6 +115,8 @@ const routes: Routes = [
     MatSelectModule,
     MatChipsModule,
     MatMenuModule,
+    ToastrModule.forRoot(), 
+    NgxLoadingModule.forRoot({}),
     FontAwesomeModule,
     NgxDatatableModule,
     NgxChartsModule,

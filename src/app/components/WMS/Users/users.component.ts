@@ -11,6 +11,8 @@ import { UserDeleteConfirmationComponent } from './user-delete-confirmation/user
 import { UserDTO } from 'src/app/models/DTOs/userDTO.model';
 import { UserEditComponent } from './user-edit/user-edit.component';
 
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
@@ -21,7 +23,7 @@ export class UsersComponent implements OnInit {
   faTrash = faTrash;
   faEdit = faEdit;
 
-  constructor(public userService: UserService, public GetRoleService: GetRoleService, public dialog: MatDialog) { }
+  constructor(public userService: UserService, private toastr: ToastrService, public GetRoleService: GetRoleService, public dialog: MatDialog) { }
   token: string;
   users: UserDTO[];
   userAdmin: UserDTO[];

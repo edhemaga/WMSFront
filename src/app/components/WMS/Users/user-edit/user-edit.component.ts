@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { UserDTO } from 'src/app/models/DTOs/userDTO.model';
 import { UserService } from 'src/app/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-user-edit',
@@ -15,7 +16,7 @@ export class UserEditComponent implements OnInit {
   selectedFile: File;
   roles: string[] = ["Admin", "Operater", "Moderator"];
 
-  constructor(public userService: UserService, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<UserEditComponent>) { }
+  constructor(public userService: UserService, private toastr: ToastrService, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<UserEditComponent>) { }
 
   ngOnInit(): void {
     this.editUserForm = new FormGroup({
@@ -24,7 +25,6 @@ export class UserEditComponent implements OnInit {
       role: new FormControl(this.data.user.role, Validators.required),
       phoneNumber: new FormControl(this.data.user.phoneNumber, Validators.required),
       email: new FormControl(this.data.user.email, Validators.required),
-      password: new FormControl(null, Validators.required),
     });
   }
 
@@ -35,21 +35,24 @@ export class UserEditComponent implements OnInit {
       role: this.editUserForm.value.role,
       phoneNumber: this.editUserForm.value.phoneNumber,
       email: this.editUserForm.value.email,
-      password: this.editUserForm.value.password,
     }
     userToEdit.id = this.data.user.id;
-    this.userService.editUser(userToEdit).subscribe();
+    this.userService.editUser(userToEdit).subscribe(() => {
+      this.dialogRef.close(); this.toastr.success('Uspješno ste izvršili željenu radnju!');
+    }, () => {
+      this.toastr.error('Desio se problem. Pokušajte ponovo!');
+    });
   }
 
-  uploadUserPicture(userPicture: File) {
-    if (userPicture != null) {
-      this.selectedFile = userPicture[0];
-    }
-  }
+  // uploadUserPicture(userPicture: File) {
+  //   if (userPicture != null) {
+  //     this.selectedFile = userPicture[0];
+  //   }
+  // }
 
-  removeUserPicture(userPicture: File) {
-    if (this.selectedFile.name == userPicture.name) {
-    }
-  }
+  // removeUserPicture(userPicture: File) {
+  //   if (this.selectedFile.name == userPicture.name) {
+  //   }
+  // }
 
 }

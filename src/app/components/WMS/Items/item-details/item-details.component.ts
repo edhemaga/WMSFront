@@ -7,6 +7,7 @@ import { ItemService } from 'src/app/services/item.service';
 import { SeriesService } from 'src/app/services/series.service';
 import { faPallet, faPlusCircle, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-item-details',
@@ -15,7 +16,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class ItemDetailsComponent implements OnInit {
 
-  constructor(public itemService: ItemService, public seriesService: SeriesService, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ItemDetailsComponent>) { }
+  constructor(public itemService: ItemService, private toastr: ToastrService, public seriesService: SeriesService, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ItemDetailsComponent>) { }
 
   item: ItemDTO;
   rows = [];
@@ -44,11 +45,22 @@ export class ItemDetailsComponent implements OnInit {
       seriesId: series,
       itemId: item
     }
-    this.seriesService.assignStorageBin(itemDetails).subscribe();
+    this.seriesService.assignStorageBin(itemDetails).subscribe(() => {
+      this.itemService.getItem(this.data.item.id).subscribe(data => {
+        this.item = data as ItemDTO;
+      });
+      this.toastr.success('Uspješno ste izvršili željenu radnju!');
+    }, () => {
+      this.toastr.error('Desio se problem. Pokušajte ponovo!');
+    });
   }
 
   deleteSeries(seriesId: string) {
-    this.seriesService.deleteSeries(seriesId).subscribe();
+    this.seriesService.deleteSeries(seriesId).subscribe(() => {
+      this.toastr.success('Uspješno ste izvršili željenu radnju!');
+    }, () => {
+      this.toastr.error('Desio se problem. Pokušajte ponovo!');
+    });
   }
 
   addNewSeries() {
@@ -65,11 +77,12 @@ export class ItemDetailsComponent implements OnInit {
       }
       this.seriesService.addNewSeries(newSeries).subscribe(() => {
         this.addNewsSeriesToggle = true;
-      },
-        err => {
-          console.log(err);
-        });
+        this.toastr.success('Uspješno ste izvršili željenu radnju!');
+      }, () => {
+        this.toastr.error('Desio se problem. Pokušajte ponovo!');
+      });
     }
   }
 
 }
+

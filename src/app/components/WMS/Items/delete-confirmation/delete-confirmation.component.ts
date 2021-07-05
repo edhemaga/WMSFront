@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { ItemService } from 'src/app/services/item.service';
 
 @Component({
@@ -9,18 +10,17 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class DeleteConfirmationComponent implements OnInit {
 
-  constructor(public ItemService: ItemService, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DeleteConfirmationComponent>) { }
+  constructor(public ItemService: ItemService, private toastr: ToastrService, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<DeleteConfirmationComponent>) { }
 
   ngOnInit(): void {
   }
 
   deleteRow(id: string) {
-    this.ItemService.deleteItem(id).subscribe(result => {
-      this.closeConfirmation();
-    },
-      err => {
-        console.log(err);
-      });
+    this.ItemService.deleteItem(id).subscribe(() => {
+      this.toastr.success('Uspješno ste izvršili željenu radnju!');
+    }, () => {
+      this.toastr.error('Desio se problem. Pokušajte ponovo!');
+    });
   }
 
   closeConfirmation() {

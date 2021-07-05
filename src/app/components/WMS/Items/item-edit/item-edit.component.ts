@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { ItemDTO } from 'src/app/models/DTOs/item/itemDTO.model';
 import { ItemService } from 'src/app/services/item.service';
 
@@ -13,7 +14,7 @@ export class ItemEditComponent implements OnInit {
 
   editItemForm: FormGroup;
 
-  constructor(public ItemService: ItemService, @Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ItemEditComponent>) { }
+  constructor(public ItemService: ItemService, @Inject(MAT_DIALOG_DATA) public data: any, private toastr: ToastrService, public dialogRef: MatDialogRef<ItemEditComponent>) { }
 
   ngOnInit(): void {
 
@@ -35,11 +36,10 @@ export class ItemEditComponent implements OnInit {
       minimalQuantity: this.editItemForm.value.minimalQuantity
     }
     this.ItemService.editItem(item)
-      .subscribe(result => {
-        this.dialogRef.close();
-      },
-        err => {
-          console.log(err);
-        });
+      .subscribe(() => {
+        this.toastr.success('Uspješno ste izvršili željenu radnju!');
+      }, () => {
+        this.toastr.error('Desio se problem. Pokušajte ponovo!');
+      });
   }
 }

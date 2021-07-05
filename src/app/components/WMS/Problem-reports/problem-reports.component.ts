@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LogDTO } from 'src/app/models/DTOs/log/log.model';
+import { LogService } from 'src/app/services/log.service';
 
 @Component({
   selector: 'app-problem-reports',
@@ -15,16 +16,11 @@ export class ProblemReportsComponent implements OnInit {
 
   logs: LogDTO[] = [];
 
-  constructor() { }
+  constructor(public logService: LogService) { }
 
   ngOnInit(): void {
-    var log: LogDTO = {
-      id: '123',
-      changedAttribute: 'Količina',
-      previouseValue: '0',
-      newValue: '100',
-      item: 'Test 1'
-    }
-    this.logs.push(log);
+    this.logService.getLogs().subscribe(data => {
+      this.logs = data as LogDTO[];
+    })
   }
 }

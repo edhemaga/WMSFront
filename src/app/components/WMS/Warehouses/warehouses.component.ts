@@ -4,6 +4,7 @@ import { WarehouseService } from 'src/app/services/warehouse.service';
 import { AddWarehouseComponent } from './add-warehouse/add-warehouse.component';
 import { Warehouse } from '../../../models/Warehouse/Warehouse.model';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 import { faTrash, faEdit, faPencilRuler } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,7 +15,7 @@ import { faTrash, faEdit, faPencilRuler } from '@fortawesome/free-solid-svg-icon
 })
 export class WarehousesComponent implements OnInit {
 
-  constructor(public warehouseService: WarehouseService, public dialog: MatDialog, private router: Router) { }
+  constructor(public warehouseService: WarehouseService, public dialog: MatDialog, private router: Router, private toastr: ToastrService) { }
 
   faTrash = faTrash;
   faEdit = faEdit;
@@ -24,13 +25,13 @@ export class WarehousesComponent implements OnInit {
   ngOnInit(): void {
     this.warehouseService.getWarehouses().subscribe(data => {
       this.warehouses = data as Warehouse[];
-      console.log(this.warehouses);
     })
   }
 
   addNewWarehouse() {
     const dialogRef = this.dialog.open(AddWarehouseComponent);
     dialogRef.afterClosed().subscribe(event => {
+      this.toastr.success('Uspješno ste dodali novo skladište!');
     });
   }
 
