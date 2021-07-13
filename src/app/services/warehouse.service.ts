@@ -23,7 +23,6 @@ export class WarehouseService {
   }
 
   addStorageBins(config: configDTO) {
-
     return this.http.post(this.rootURL + "addConfig/", config, {
       headers: new HttpHeaders()
         .set('Authorization', 'Bearer ' + localStorage.getItem("jwt"))

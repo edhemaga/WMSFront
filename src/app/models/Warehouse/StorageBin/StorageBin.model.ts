@@ -3,6 +3,6 @@ export interface StorageBin {
     Label: String;
     Column: String;
     Rack: String;
-    CurrentWeight: number;
+    Section: String;
     MaximumWeight: number;
 }

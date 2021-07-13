@@ -52,6 +52,7 @@ import { DrawingGridModule } from 'ngx-drawing-grid';
 import { IncomingComponent } from './components/WMS/Orders/incoming/incoming.component';
 import { OutgoingComponent } from './components/WMS/Orders/outgoing/outgoing.component';
 import { StatisticsComponent } from './components/WMS/statistics/statistics.component';
+import { WarehouseDetailsComponent } from './components/WMS/Warehouses/warehouse-details/warehouse-details.component';
 
 export function tokenGetter() {
   return localStorage.getItem("jwt");
@@ -65,6 +66,7 @@ const routes: Routes = [
       { path: 'warehouses', component: WarehousesComponent },
       { path: 'items', component: ItemsComponent },
       { path: 'config/:id', component: ConfigWarehouseComponent },
+      { path: 'warehouseDetails/:id', component: WarehouseDetailsComponent },
       { path: 'orders', component: OrdersComponent },
       { path: 'statistics', component: StatisticsComponent },
       { path: 'problem', component: ProblemReportsComponent },
@@ -100,7 +102,8 @@ const routes: Routes = [
     ConfigWarehouseComponent,
     IncomingComponent,
     OutgoingComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    WarehouseDetailsComponent
   ],
   imports: [
     BrowserModule,

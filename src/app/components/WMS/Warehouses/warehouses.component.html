@@ -1,7 +1,7 @@
 <div id="wrapper">
     <button id="addWarehouseBtn" mat-raised-button (click)="addNewWarehouse()">Dodaj novo skladište</button>
     <div id="wrapperWarehouse" *ngIf="warehouses.length != 0">
-        <span id="warehouse" *ngFor="let warehouse of warehouses; let i = index">
+        <span id="warehouse" *ngFor="let warehouse of warehouses; let i = index" (click)="goToWarehouseDetails(warehouse.id)">
             <div id="header"></div>
             <div id="content">
                 <div id="contentInfo">
@@ -15,12 +15,12 @@
                         <span id="edit" (click)="configureWarehouse(warehouse.id)">
                             <fa-icon [icon]="faPencilRuler"></fa-icon>
                         </span>
-                        <span id="edit" (click)="editWarehouse(warehouse)">
+                        <!-- <span id="edit" (click)="editWarehouse(warehouse)">
                             <fa-icon [icon]="faEdit"></fa-icon>
                         </span>
                         <span id="delete">
                             <fa-icon [icon]="faTrash"></fa-icon>
-                        </span>
+                        </span> -->
                     </span>
                 </div>
             </div>

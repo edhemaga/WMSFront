@@ -39,12 +39,8 @@ export class WarehousesComponent implements OnInit {
     this.router.navigate(["home/config/", id]);
   }
 
-  editWarehouse() {
-    console.log("edit");
-  }
-
-  deleteWarehouse() {
-    console.log("delete");
+  goToWarehouseDetails(id) {
+    this.router.navigate(["home/warehouseDetails/", id]);
   }
 
 }

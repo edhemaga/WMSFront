@@ -1,0 +1,57 @@
+<div>
+    <ngx-datatable (click)="test()" id="itemTable" class="dark align" [rows]="storageBins" [headerHeight]="50"
+        columnMode="force" [messages]="{emptyMessage: 'Nema podataka!'}" scrollbarH="true" virtualization="true"
+        swapColumns="true" footerHeight="auto" rowHeight="auto" [externalPaging]="false">
+        <ngx-datatable-column prop="label" name="Oznaka">
+            <ng-template let-column="column" ngx-datatable-header-template> {{column.name}} </ng-template>
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <p>
+                    {{ value }}
+                </p>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column prop="column" name="Kolona">
+            <ng-template let-column="column" ngx-datatable-header-template> {{column.name}} </ng-template>
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <p>
+                    {{ value }}
+                </p>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column prop="rack" name="Rafa">
+            <ng-template let-column="column" ngx-datatable-header-template> {{column.name}} </ng-template>
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <p>
+                    {{ value }}
+                </p>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column prop="section" name="Odjel">
+            <ng-template let-column="column" ngx-datatable-header-template> {{column.name}} </ng-template>
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <p>
+                    {{ value }}
+                </p>
+            </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column prop="maximumWeight" name="Maksimalna dozvoljena kilaža">
+            <ng-template let-column="column" ngx-datatable-header-template> {{column.name}} </ng-template>
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <p>
+                    {{ value }}
+                </p>
+            </ng-template>
+        </ngx-datatable-column>
+        <!-- 
+        <ngx-datatable-column [sortable]="false" name="Dodijeli poziciju">
+            <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <span *ngIf="row.storageBin == 'ulaz'" class="alignTextCenter"
+                    (click)="assigntStorageBin(item.id, row.id)">
+                    <p>
+                        <fa-icon [icon]="faPallet"></fa-icon>
+                    </p>
+                </span>
+            </ng-template>
+        </ngx-datatable-column> -->
+    </ngx-datatable>
+</div>
